@@ -5,11 +5,11 @@ function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 intro("welcome to the salesforce account creation CLI tool");
-const shouldContinue = await confirm({
+const useJSON = await confirm({
     message: 'Would you like to use a JSON to create an account?',
 });
 while (shouldEnd == false) {
-    const projectType = await select({
+    const AccountType = await select({
         message: 'Pick an account type.',
         options: [
             { value: 'With 3PP', label: 'Third Party Payer' },
@@ -20,10 +20,10 @@ while (shouldEnd == false) {
     s.start("Creating account");
     await delay(5000);
     s.stop("Account created");
-    const shouldContinue2 = await confirm({
+    const shouldContinue = await confirm({
         message: 'Would you like to create another account?',
     });
-    if (!shouldContinue2) {
+    if (!shouldContinue) {
         shouldEnd = true;
     }
 }
